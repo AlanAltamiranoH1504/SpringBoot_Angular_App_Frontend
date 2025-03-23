@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Producto} from '../models/Producto';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,10 @@ export class ProductService {
   ];
 
   constructor() {
+  }
+
+  //Metodo findAll
+  public findAll(): Observable<Producto[]>{
+    return of(this.productos)
   }
 }
