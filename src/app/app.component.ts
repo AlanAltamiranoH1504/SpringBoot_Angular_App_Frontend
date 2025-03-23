@@ -1,12 +1,33 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, NgIf, NgForOf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Front_Angular_App';
+  //Atributos
+  title = 'Hola Mundo Angular';
+  enable: boolean = true;
+  cursos: string[] = [
+    'Angular',
+    'React',
+    'SpringBoot',
+    'NodeJs/Express',
+    'Php',
+    'Laravel',
+    'Javascript',
+    'Java',
+    'Bootstrap',
+    'Git'
+  ];
+
+  //Metodos del componente
+  setEnabled(): void {
+    this.enable = !this.enable;
+  }
 }
