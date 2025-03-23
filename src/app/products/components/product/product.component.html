@@ -1,1 +1,45 @@
-<p>product works!</p>
+@if (productos.length >= 1) {
+  <div class="container-xl my-3">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="bg-success py-2 px-3 fw-bolder text-white text-uppercase rounded text-center">Aplicacion SpringBoot y Angular JS</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container-xl my-3">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <thead class="text-uppercase text-center table-dark">
+          <tr class="fs-4">
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for (producto of productos; track $index) {
+              <tr class="text-center fw-semibold">
+                <td>{{ producto.id }}</td>
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.descripcion}}</td>
+                <td>{{producto.precio}}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="container-xl">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="bg-warning text-uppercase fw-bolder text-white rounded">
+          <h2>Lo sentimos no hay productos</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+}
