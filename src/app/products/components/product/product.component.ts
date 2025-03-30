@@ -30,21 +30,26 @@ export class ProductComponent implements OnInit {
   addProducto(producto: Producto): void {
     if (producto.id > 0) {
       this.productos = this.productos.map((prod) => {
-        if (prod.id === producto.id){
-          return {... producto}
+        if (prod.id === producto.id) {
+          return {...producto}
         }
         return prod;
       });
     } else {
       this.productos.push(producto);
     }
-
-
     // this.productos = [... this.productos, {... producto}];
   }
 
   //Metodo que llena el producto a editar
   onUpdateProducto(producto: Producto): void {
     this.productSelected = producto;
+  }
+
+  //Metodo que elimina un producto
+  onDeleteProducto(producto: Producto) {
+    this.productos = this.productos.filter((prod) => {
+      return prod.id !== producto.id;
+    });
   }
 }
