@@ -1,0 +1,35 @@
+<div>
+  <div class="mb-4">
+    <h3 class="fw-bolder text-uppercase  border-2 border-black text-center px-3 py-2 border-bottom">Agregar Nuevo
+      Producto</h3>
+  </div>
+  <!--Configuramos accion submit con metodo del componente-->
+  <form (ngSubmit)="onSubmit()" action="" method="post">
+    <div class="mb-4">
+      <label class="form-label fw-bold" for="nombre">Nombre</label>
+      <!--Mapeamos campo con atributo -->
+      <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre del producto"
+             [(ngModel)]="product.nombre"
+      >
+    </div>
+    <div class="mb-4">
+      <label class="form-label fw-bold" for="descripcion">Descripcion</label>
+      <!--Mapeamos input con atributo-->
+      <input type="text" name="descripcion" id="descripcion" class="form-control"
+             placeholder="Descripcion del producto"
+             [(ngModel)]="product.descripcion"
+      >
+    </div>
+    <div class="mb-4">
+      <label class="form-label fw-bold" for="precio">Precio</label>
+      <!--Mapeamos input con atributi-->
+      <input type="text" name="precio" id="precio" class="form-control" placeholder="Precio del producto"
+             [(ngModel)]="product.precio"
+      >
+    </div>
+    <div class="mb-4">
+      <button type="submit" class="btn btn-primary fw-bold text-uppercase">Agregar Producto</button>
+    </div>
+  </form>
+</div>
+

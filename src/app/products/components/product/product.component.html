@@ -1,8 +1,17 @@
 @if (productos.length >= 1) {
+
   <div class="container-xl my-3">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="bg-success py-2 px-3 fw-bolder text-white text-uppercase rounded text-center">Aplicacion SpringBoot y Angular JS</h2>
+        <h2 class="bg-success py-2 px-3 fw-bolder text-white text-uppercase rounded text-center">Aplicacion SpringBoot y
+          Angular JS</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container-xl">
+    <div class="row">
+      <div class="col-md-5">
+        <product-form (newProductoEvent) = "addProducto($event)"></product-form>
       </div>
     </div>
   </div>
@@ -22,9 +31,9 @@
             @for (producto of productos; track $index) {
               <tr class="text-center fw-semibold">
                 <td>{{ producto.id }}</td>
-                <td>{{producto.nombre}}</td>
-                <td>{{producto.descripcion}}</td>
-                <td>{{producto.precio}}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>${{ producto.precio }}</td>
               </tr>
             }
           </tbody>
