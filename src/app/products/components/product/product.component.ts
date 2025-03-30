@@ -28,16 +28,21 @@ export class ProductComponent implements OnInit {
 
   //Metodo addProducto que agregar producto al arreglo
   addProducto(producto: Producto): void {
-    if (producto.id > 0) {
-      this.productos = this.productos.map((prod) => {
-        if (prod.id === producto.id) {
-          return {...producto}
-        }
-        return prod;
-      });
-    } else {
-      this.productos.push(producto);
+    if (producto.nombre.trim() === "" || producto.descripcion.trim() === "" || (producto.id == 0 && producto.precio == 0)) {
+      console.log("No pasa el formulario")
+    }else{
+      if (producto.id > 0) {
+        this.productos = this.productos.map((prod) => {
+          if (prod.id === producto.id) {
+            return {...producto}
+          }
+          return prod;
+        });
+      } else {
+        this.productos.push(producto);
+      }
     }
+
     // this.productos = [... this.productos, {... producto}];
   }
 

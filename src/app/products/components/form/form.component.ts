@@ -14,9 +14,9 @@ export class FormComponent implements OnChanges {
 
   // Objeto que entra al componente padre
   @Input() producto: Producto = {
-    id: 1,
-    nombre: "---",
-    descripcion: "---",
+    id: 0,
+    nombre: "",
+    descripcion: "",
     precio: 0
   };
 
