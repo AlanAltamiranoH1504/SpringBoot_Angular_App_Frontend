@@ -1,28 +1,38 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {Producto} from '../../models/Producto';
-import {FormsModule} from '@angular/forms';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Producto } from '../../models/Producto';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'product-form',
   imports: [FormsModule],
   templateUrl: './form.component.html',
-  styleUrl: './form.component.css'
+  styleUrls: ['./form.component.css']
 })
-export class FormComponent {
-  //Atributos con los campos el formulario
+export class FormComponent implements OnChanges {
+  // Atributos con los campos del formulario
   product: Producto = new Producto();
-  protected Producto = {
+
+  // Objeto que entra al componente padre
+  @Input() producto: Producto = {
     id: 1,
     nombre: "---",
     descripcion: "---",
     precio: 0
   };
 
-  //Objeto de salida al componente padre
-  @Output() newProductoEvent = new EventEmitter();
+  // Objeto de salida al componente padre
+  @Output() newProductoEvent = new EventEmitter<Producto>();
 
-  //Metodo onSubmit
+  // Método onSubmit
   onSubmit() {
-    this.newProductoEvent.emit(this.product)
+    this.newProductoEvent.emit(this.product);
+  }
+
+  // Actualizar 'product' cuando 'producto' cambia
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['producto'] && changes['producto'].currentValue) {
+      this.product = { ...changes['producto'].currentValue };
+    }
   }
 }
+
