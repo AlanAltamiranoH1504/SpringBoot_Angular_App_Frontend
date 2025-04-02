@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Producto} from '../models/Producto';
-import {Observable, of} from 'rxjs';
+import {map, Observable, of} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +29,28 @@ export class ProductService {
     },
   ];
 
-  constructor() {
+  //Variable de ruta base
+  private url:string = "http://localhost:8080/productos";
+
+  //Inyectamos el http client
+  constructor(private http:HttpClient) {
   }
 
   //Metodo findAll
   public findAll(): Observable<Producto[]>{
-    return of(this.productos)
+    return this.http.get<Producto[]>(this.url).pipe(
+      map((response: any) => response._embedded.productoes as Producto[])
+    );
+    // return of(this.productos)
+  }
+
+  //Metodo create
+  public create(producto: Producto): Observable<Producto>{
+     return this.http.post<Producto>(this.url, producto);
+  }
+
+  //Metod update
+  public update(producto: Producto): Observable<Producto>{
+    return this.http.put<Producto>(`${this.url}/${producto.id}`, producto);
   }
 }

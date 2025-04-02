@@ -30,16 +30,20 @@ export class ProductComponent implements OnInit {
   addProducto(producto: Producto): void {
     if (producto.nombre.trim() === "" || producto.descripcion.trim() === "" || (producto.id == 0 && producto.precio == 0)) {
       console.log("No pasa el formulario")
-    }else{
+    } else {
       if (producto.id > 0) {
-        this.productos = this.productos.map((prod) => {
-          if (prod.id === producto.id) {
-            return {...producto}
-          }
-          return prod;
-        });
+        this.service.update(producto).subscribe(productoUpdate => {
+          this.productos = this.productos.map((prod) => {
+            if (prod.id === producto.id) {
+              return {...producto}
+            }
+            return prod;
+          });
+        })
       } else {
-        this.productos.push(producto);
+        this.service.create(producto).subscribe(productonew => {
+          this.productos.push(productonew);
+        })
       }
     }
 
