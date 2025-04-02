@@ -46,7 +46,6 @@ export class ProductComponent implements OnInit {
         })
       }
     }
-
     // this.productos = [... this.productos, {... producto}];
   }
 
@@ -57,8 +56,10 @@ export class ProductComponent implements OnInit {
 
   //Metodo que elimina un producto
   onDeleteProducto(producto: Producto) {
-    this.productos = this.productos.filter((prod) => {
-      return prod.id !== producto.id;
+    this.service.delete(producto).subscribe(() => {
+      this.productos = this.productos.filter((prod) => {
+        return prod.id !== producto.id;
+      });
     });
   }
 }
